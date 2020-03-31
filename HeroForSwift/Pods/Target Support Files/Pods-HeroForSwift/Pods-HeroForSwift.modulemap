@@ -1,0 +1,6 @@
+module Pods_HeroForSwift {
+  umbrella header "Pods-HeroForSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}

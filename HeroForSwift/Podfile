@@ -1,0 +1,6 @@
+# Podfile
+#use_frameworks!
+
+target 'HeroForSwift' do
+    pod 'Hero'
+end
