@@ -29,7 +29,7 @@ class ImageViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        automaticallyAdjustsScrollViewInsets = false
+        //automaticallyAdjustsScrollViewInsets = false
         preferredContentSize = CGSize(width: view.bounds.width, height: view.bounds.width)
         
         view.layoutIfNeeded()
@@ -45,9 +45,9 @@ class ImageViewController: UICollectionViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        for v in (collectionView!.visibleCells as? [ScrollingImageCell])! {
-            v.topInset = topLayoutGuide.length
-        }
+//        for v in (collectionView!.visibleCells as? [ScrollingImageCell])! {
+//            v.topInset = topLayoutGuide.length
+//        }
     }
     
     @objc func pan() {
@@ -82,7 +82,7 @@ extension ImageViewController {
         imageCell.image = ImageLibrary.image(index:indexPath.item) 
         imageCell.imageView.hero.id = "image_\(indexPath.item)"
         imageCell.imageView.hero.modifiers = [.position(CGPoint(x:view.bounds.width/2, y:view.bounds.height+view.bounds.width/2)), .scale(0.6), .fade]
-        imageCell.topInset = topLayoutGuide.length
+        //imageCell.topInset = topLayoutGuide.length
         imageCell.imageView.isOpaque = true
         return imageCell
     }

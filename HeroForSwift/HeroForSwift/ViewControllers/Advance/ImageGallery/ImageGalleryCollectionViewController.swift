@@ -23,7 +23,7 @@
 import UIKit
 import Hero
 
-class ImageGalleryViewController: UIViewController {
+class ImageGalleryVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var columns = 3
     lazy var cellSize: CGSize = CGSize(width: self.view.bounds.width/CGFloat(self.columns),
@@ -38,13 +38,13 @@ class ImageGalleryViewController: UIViewController {
     @IBAction func switchLayout(_ sender: Any) {
         // just replace the root view controller with the same view controller
         // animation is automatic! Holy
-        let next = (UIStoryboard(name: "ImageGallery", bundle: nil).instantiateViewController(withIdentifier: "imageGallery") as? ImageGalleryViewController)!
+        let next = (UIStoryboard(name: "ImageGallery", bundle: nil).instantiateViewController(withIdentifier: "imageGallery") as? ImageGalleryVC)!
         next.columns = columns == 3 ? 5 : 3
         hero.replaceViewController(with: next)
     }
 }
 
-extension ImageGalleryViewController: UICollectionViewDataSource {
+extension ImageGalleryVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = (viewController(forStoryboardName: "ImageViewer") as? ImageViewController)!
         vc.selectedIndex = indexPath
@@ -69,15 +69,15 @@ extension ImageGalleryViewController: UICollectionViewDataSource {
     }
 }
 
-extension ImageGalleryViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension ImageGalleryVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return cellSize
     }
 }
 
-extension ImageGalleryViewController: HeroViewControllerDelegate {
+extension ImageGalleryVC: HeroViewControllerDelegate {
     func heroWillStartAnimatingTo(viewController: UIViewController) {
-        if (viewController as? ImageGalleryViewController) != nil {
+        if (viewController as? ImageGalleryVC) != nil {
             collectionView.hero.modifiers = [.cascade(delta:0.015, direction:.bottomToTop, delayMatchedViews:true)]
         } else if (viewController as? ImageViewController) != nil {
             let cell = collectionView.cellForItem(at: collectionView.indexPathsForSelectedItems!.first!)!
@@ -88,7 +88,7 @@ extension ImageGalleryViewController: HeroViewControllerDelegate {
     }
     func heroWillStartAnimatingFrom(viewController: UIViewController) {
         view.hero.modifiers = nil
-        if (viewController as? ImageGalleryViewController) != nil {
+        if (viewController as? ImageGalleryVC) != nil {
             collectionView.hero.modifiers = [.cascade(delta:0.015), .delay(0.25)]
         } else {
             collectionView.hero.modifiers = [.cascade(delta:0.015)]

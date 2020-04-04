@@ -14,6 +14,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.2192357513" green="0.2192357513" blue="0.2192357513" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="contentLayoutGuide" id="QAe-CD-Pdr"/>
+                        <viewLayoutGuide key="frameLayoutGuide" id="l5j-24-n2g"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="jbc-e2-Ygw">
                             <size key="itemSize" width="217" height="196"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>

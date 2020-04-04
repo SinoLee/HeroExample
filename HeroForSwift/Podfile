@@ -2,6 +2,6 @@
 #use_frameworks!
 
 target 'HeroForSwift' do
-    pod 'Hero'
+    pod 'Hero', :git => 'https://github.com/SinoLee/Hero.git'
 #    pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 end

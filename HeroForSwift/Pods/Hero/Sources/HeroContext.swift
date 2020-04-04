@@ -226,7 +226,9 @@ extension HeroContext {
 		view.layer.shadowOpacity = oldShadowOpacity
 
     snapshot.layer.anchorPoint = view.layer.anchorPoint
-    snapshot.layer.position = containerView.convert(view.layer.position, from: view.superview!)
+    if let superview = view.superview {
+      snapshot.layer.position = containerView.convert(view.layer.position, from: superview)
+    }
     snapshot.layer.transform = containerView.layer.flatTransformTo(layer: view.layer)
     snapshot.layer.bounds = view.layer.bounds
     snapshot.hero.id = view.hero.id
@@ -262,9 +264,12 @@ extension HeroContext {
       hide(view: view)
     }
 
-    if let pairedView = pairedView(for: view), let pairedSnapshot = snapshotViews[pairedView] {
-      let siblingViews = pairedView.superview!.subviews
-      let nextSiblings = siblingViews[siblingViews.firstIndex(of: pairedView)!+1..<siblingViews.count]
+    if
+     let pairedView = pairedView(for: view),
+     let pairedSnapshot = snapshotViews[pairedView],
+     let siblingViews = pairedView.superview?.subviews,
+      let index = siblingViews.firstIndex(of: pairedView) {
+      let nextSiblings = siblingViews[index+1..<siblingViews.count]
       containerView.addSubview(pairedSnapshot)
       containerView.addSubview(snapshot)
       for subview in pairedView.subviews {
